@@ -1,6 +1,6 @@
-[submodule "amyd_resta"]
-	path = calculadora/amyd_resta
-	url = https://github.com/2025-b-sw-construccion-gr2/amyd_resta.git
-[submodule "amyd_suma"]
+[submodule "calculadora/amyd_suma"]
 	path = calculadora/amyd_suma
 	url = https://github.com/2025-b-sw-construccion-gr2/amyd_suma.git
+[submodule "calculadora/amyd_resta"]
+	path = calculadora/amyd_resta
+	url = https://github.com/2025-b-sw-construccion-gr2/amyd_resta.git
