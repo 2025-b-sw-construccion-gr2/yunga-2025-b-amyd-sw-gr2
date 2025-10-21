@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reloj, Cronómetro y Temporizador</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 class="titulo">🕒 Reloj Digital</h1>
+
+    <div id="modoActual" class="modo-actual">Reloj</div>
+    
+    <div id="pantalla" class="pantalla">--:--:--</div>
+
+    <div id="inputTemporizador" class="input-temporizador" style="display: none;">
+      <input type="number" id="minutos" placeholder="Min" min="0" max="59" value="0" />
+      <span>:</span>
+      <input type="number" id="segundos" placeholder="Seg" min="0" max="59" value="10" />
+      <button id="btnSetTemporizador" class="btn-set">Configurar</button>
+    </div>
+
+    <div class="controles">
+      <button id="btnReloj" class="btn btn-primary">⏰ Reloj</button>
+      <button id="btnCronometro" class="btn btn-success">⏱️ Cronómetro</button>
+      <button id="btnTemporizador" class="btn btn-warning">⏲️ Temporizador</button>
+    </div>
+
+    <div class="controles-secundarios">
+      <button id="btnIniciar" class="btn btn-action">▶️ Iniciar</button>
+      <button id="btnPausar" class="btn btn-action">⏸️ Pausar</button>
+      <button id="btnReiniciar" class="btn btn-action">🔄 Reiniciar</button>
+    </div>
+
+    <button id="btnTema" class="btn-tema">🌓 Cambiar Tema</button>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
