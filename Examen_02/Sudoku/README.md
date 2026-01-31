@@ -3,7 +3,8 @@
 ## 📋 Información del Proyecto
 
 **Nombre:** Sudoku Interactive Game  
-**Curso:** Construcción y Evolución de Software  
+**Curso:** Construcción y Evolución de Software
+**Autores:** Betancourt Alison, Yunga Mateo
 **Descripción:** Juego de Sudoku interactivo con pipeline de integración continua implementado con GitHub Actions.
 
 ---
@@ -149,35 +150,7 @@ El pipeline se ejecuta automáticamente en cada `push` o `pull request` hacia la
 
 ### Diagrama de Flujo del Pipeline
 
-```
-┌─────────────┐
-│ Push/PR     │
-└──────┬──────┘
-       │
-       ├──────┐
-       │      │
-       ▼      ▼
-   ┌────┐  ┌────────┐
-   │Lint│  │Format  │  ◄── Ejecutan en paralelo
-   └──┬─┘  └───┬────┘
-       │       │
-       └───┬───┘
-           │
-           ▼
-        ┌──────┐
-        │Tests │
-        └───┬──┘
-            │
-            ▼
-        ┌───────┐
-        │Build  │
-        └───┬───┘
-            │
-            ▼
-     ┌─────────────┐
-     │Status Check │
-     └─────────────┘
-```
+<img width="1505" height="468" alt="{3F6CCC1E-3390-4211-9ACA-12FFEDC8C155}" src="https://github.com/user-attachments/assets/4d2b3915-1094-44c3-b7b3-4c44a15bf205" />
 
 ### Orden de Ejecución
 
