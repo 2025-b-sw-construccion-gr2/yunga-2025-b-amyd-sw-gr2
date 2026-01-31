@@ -36,33 +36,37 @@ function initGame() {
 // Generate a valid Sudoku puzzle
 function generateSudoku() {
     // Create empty board
-    board = Array(9).fill(null).map(() => Array(9).fill(0));
-    solution = Array(9).fill(null).map(() => Array(9).fill(0));
-    
+    board = Array(9)
+        .fill(null)
+        .map(() => Array(9).fill(0));
+    solution = Array(9)
+        .fill(null)
+        .map(() => Array(9).fill(0));
+
     // Fill the board with a valid solution
     solveSudoku(solution);
-    
+
     // Copy solution to board
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             board[i][j] = solution[i][j];
         }
     }
-    
+
     // Remove numbers based on difficulty
     const cellsToRemove = {
-        'easy': 35,
-        'medium': 45,
-        'hard': 55
+        easy: 35,
+        medium: 45,
+        hard: 55,
     };
-    
+
     const toRemove = cellsToRemove[currentDifficulty];
     let removed = 0;
-    
+
     while (removed < toRemove) {
         const row = Math.floor(Math.random() * 9);
         const col = Math.floor(Math.random() * 9);
-        
+
         if (board[row][col] !== 0) {
             board[row][col] = 0;
             removed++;
@@ -74,22 +78,22 @@ function generateSudoku() {
 function solveSudoku(board) {
     const empty = findEmpty(board);
     if (!empty) return true;
-    
+
     const [row, col] = empty;
     const numbers = shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-    
+
     for (const num of numbers) {
         if (isValid(board, num, row, col)) {
             board[row][col] = num;
-            
+
             if (solveSudoku(board)) {
                 return true;
             }
-            
+
             board[row][col] = 0;
         }
     }
-    
+
     return false;
 }
 
@@ -111,16 +115,16 @@ function isValid(board, num, row, col) {
     for (let x = 0; x < 9; x++) {
         if (board[row][x] === num) return false;
     }
-    
+
     // Check column
     for (let x = 0; x < 9; x++) {
         if (board[x][col] === num) return false;
     }
-    
+
     // Check 3x3 box
     const boxRow = Math.floor(row / 3) * 3;
     const boxCol = Math.floor(col / 3) * 3;
-    
+
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
             if (board[boxRow + i][boxCol + j] === num) {
@@ -128,7 +132,7 @@ function isValid(board, num, row, col) {
             }
         }
     }
-    
+
     return true;
 }
 
@@ -145,16 +149,16 @@ function shuffleArray(array) {
 // Render the board
 function renderBoard() {
     sudokuBoard.innerHTML = '';
-    
+
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             const cell = document.createElement('div');
             cell.classList.add('cell');
             cell.dataset.row = i;
             cell.dataset.col = j;
-            
+
             const value = board[i][j];
-            
+
             if (value !== 0) {
                 cell.textContent = value;
                 if (solution[i][j] === value && !isCellEditable(i, j)) {
@@ -163,7 +167,7 @@ function renderBoard() {
                     cell.classList.add('cell-correct');
                 }
             }
-            
+
             cell.addEventListener('click', () => selectCell(i, j));
             sudokuBoard.appendChild(cell);
         }
@@ -174,24 +178,28 @@ function renderBoard() {
 function isCellEditable(row, col) {
     // A cell is editable if it was 0 in the original puzzle
     // We need to track original state
-    return !document.querySelector(`[data-row="${row}"][data-col="${col}"]`)?.classList.contains('cell-fixed');
+    return !document
+        .querySelector(`[data-row="${row}"][data-col="${col}"]`)
+        ?.classList.contains('cell-fixed');
 }
 
 // Select a cell
 function selectCell(row, col) {
-    const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
-    
+    const cell = document.querySelector(
+        `[data-row="${row}"][data-col="${col}"]`
+    );
+
     if (cell.classList.contains('cell-fixed')) return;
-    
+
     // Remove previous selection
     document.querySelectorAll('.cell').forEach(c => {
         c.classList.remove('cell-selected', 'cell-highlight');
     });
-    
+
     // Highlight selected cell
     cell.classList.add('cell-selected');
     selectedCell = { row, col };
-    
+
     // Highlight same numbers
     const value = board[row][col];
     if (value !== 0) {
@@ -206,21 +214,23 @@ function selectCell(row, col) {
 // Place number in selected cell
 function placeNumber(num) {
     if (!selectedCell) return;
-    
+
     const { row, col } = selectedCell;
-    const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
-    
+    const cell = document.querySelector(
+        `[data-row="${row}"][data-col="${col}"]`
+    );
+
     if (cell.classList.contains('cell-fixed')) return;
-    
+
     // Place the number
     board[row][col] = num;
     cell.textContent = num;
     cell.classList.remove('cell-error', 'cell-correct');
-    
+
     // Check if correct
     if (num === solution[row][col]) {
         cell.classList.add('cell-correct');
-        
+
         // Check if puzzle is complete
         if (isPuzzleComplete()) {
             setTimeout(() => showWinModal(), 300);
@@ -229,7 +239,7 @@ function placeNumber(num) {
         cell.classList.add('cell-error');
         mistakes++;
         updateMistakes();
-        
+
         if (mistakes >= maxMistakes) {
             setTimeout(() => {
                 alert('¡Has cometido muchos errores! Intenta de nuevo.');
@@ -237,7 +247,7 @@ function placeNumber(num) {
             }, 500);
         }
     }
-    
+
     // Highlight same numbers
     document.querySelectorAll('.cell').forEach(c => {
         c.classList.remove('cell-highlight');
@@ -250,16 +260,18 @@ function placeNumber(num) {
 // Erase number from selected cell
 function eraseNumber() {
     if (!selectedCell) return;
-    
+
     const { row, col } = selectedCell;
-    const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
-    
+    const cell = document.querySelector(
+        `[data-row="${row}"][data-col="${col}"]`
+    );
+
     if (cell.classList.contains('cell-fixed')) return;
-    
+
     board[row][col] = 0;
     cell.textContent = '';
     cell.classList.remove('cell-error', 'cell-correct');
-    
+
     document.querySelectorAll('.cell').forEach(c => {
         c.classList.remove('cell-highlight');
     });
@@ -271,21 +283,23 @@ function giveHint() {
         alert('Selecciona una celda primero');
         return;
     }
-    
+
     const { row, col } = selectedCell;
-    const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
-    
+    const cell = document.querySelector(
+        `[data-row="${row}"][data-col="${col}"]`
+    );
+
     if (cell.classList.contains('cell-fixed')) {
         alert('Esta celda ya tiene el número correcto');
         return;
     }
-    
+
     const correctNumber = solution[row][col];
     board[row][col] = correctNumber;
     cell.textContent = correctNumber;
     cell.classList.remove('cell-error');
     cell.classList.add('cell-correct', 'cell-fixed');
-    
+
     if (isPuzzleComplete()) {
         setTimeout(() => showWinModal(), 300);
     }
@@ -294,11 +308,13 @@ function giveHint() {
 // Check the entire board
 function checkBoard() {
     let hasErrors = false;
-    
+
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
-            const cell = document.querySelector(`[data-row="${i}"][data-col="${j}"]`);
-            
+            const cell = document.querySelector(
+                `[data-row="${i}"][data-col="${j}"]`
+            );
+
             if (!cell.classList.contains('cell-fixed') && board[i][j] !== 0) {
                 if (board[i][j] !== solution[i][j]) {
                     cell.classList.add('cell-error');
@@ -310,7 +326,7 @@ function checkBoard() {
             }
         }
     }
-    
+
     if (!hasErrors && isPuzzleComplete()) {
         setTimeout(() => showWinModal(), 300);
     } else if (hasErrors) {
@@ -392,24 +408,36 @@ difficultyBtns.forEach(btn => {
 });
 
 // Keyboard support
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', e => {
     if (e.key >= '1' && e.key <= '9') {
         placeNumber(parseInt(e.key));
     } else if (e.key === 'Backspace' || e.key === 'Delete' || e.key === '0') {
         eraseNumber();
-    } else if (e.key === 'ArrowUp' || e.key === 'ArrowDown' || 
-               e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+    } else if (
+        e.key === 'ArrowUp' ||
+        e.key === 'ArrowDown' ||
+        e.key === 'ArrowLeft' ||
+        e.key === 'ArrowRight'
+    ) {
         e.preventDefault();
         if (selectedCell) {
             let { row, col } = selectedCell;
-            
-            switch(e.key) {
-            case 'ArrowUp': row = Math.max(0, row - 1); break;
-            case 'ArrowDown': row = Math.min(8, row + 1); break;
-            case 'ArrowLeft': col = Math.max(0, col - 1); break;
-            case 'ArrowRight': col = Math.min(8, col + 1); break;
+
+            switch (e.key) {
+                case 'ArrowUp':
+                    row = Math.max(0, row - 1);
+                    break;
+                case 'ArrowDown':
+                    row = Math.min(8, row + 1);
+                    break;
+                case 'ArrowLeft':
+                    col = Math.max(0, col - 1);
+                    break;
+                case 'ArrowRight':
+                    col = Math.min(8, col + 1);
+                    break;
             }
-            
+
             selectCell(row, col);
         } else {
             selectCell(0, 0);
@@ -427,6 +455,6 @@ if (typeof module !== 'undefined' && module.exports) {
         findEmpty,
         isValid,
         shuffleArray,
-        isPuzzleComplete
+        isPuzzleComplete,
     };
 }

@@ -15,7 +15,7 @@
     "no-console": "warn",
     "semi": ["error", "always"],
     "quotes": ["error", "single"],
-    "indent": ["error", 4],
+    "indent": "off",
     "no-var": "error",
     "prefer-const": "error",
     "eqeqeq": ["error", "always"],

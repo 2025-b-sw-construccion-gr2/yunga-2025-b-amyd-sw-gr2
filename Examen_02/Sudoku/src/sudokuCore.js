@@ -11,22 +11,22 @@
 function solveSudoku(board) {
     const empty = findEmpty(board);
     if (!empty) return true;
-    
+
     const [row, col] = empty;
     const numbers = shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-    
+
     for (const num of numbers) {
         if (isValid(board, num, row, col)) {
             board[row][col] = num;
-            
+
             if (solveSudoku(board)) {
                 return true;
             }
-            
+
             board[row][col] = 0;
         }
     }
-    
+
     return false;
 }
 
@@ -59,16 +59,16 @@ function isValid(board, num, row, col) {
     for (let x = 0; x < 9; x++) {
         if (board[row][x] === num) return false;
     }
-    
+
     // Check column
     for (let x = 0; x < 9; x++) {
         if (board[x][col] === num) return false;
     }
-    
+
     // Check 3x3 box
     const boxRow = Math.floor(row / 3) * 3;
     const boxCol = Math.floor(col / 3) * 3;
-    
+
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
             if (board[boxRow + i][boxCol + j] === num) {
@@ -76,7 +76,7 @@ function isValid(board, num, row, col) {
             }
         }
     }
-    
+
     return true;
 }
 
@@ -116,7 +116,9 @@ function isPuzzleComplete(board, solution) {
  * @returns {Array<Array<number>>} - Valid 9x9 Sudoku board
  */
 function generateValidBoard() {
-    const board = Array(9).fill(null).map(() => Array(9).fill(0));
+    const board = Array(9)
+        .fill(null)
+        .map(() => Array(9).fill(0));
     solveSudoku(board);
     return board;
 }
@@ -130,17 +132,17 @@ function generateValidBoard() {
 function createPuzzle(solution, cellsToRemove = 40) {
     const board = solution.map(row => [...row]);
     let removed = 0;
-    
+
     while (removed < cellsToRemove) {
         const row = Math.floor(Math.random() * 9);
         const col = Math.floor(Math.random() * 9);
-        
+
         if (board[row][col] !== 0) {
             board[row][col] = 0;
             removed++;
         }
     }
-    
+
     return board;
 }
 
@@ -151,10 +153,10 @@ function createPuzzle(solution, cellsToRemove = 40) {
  */
 function validateBoard(board) {
     if (!board || board.length !== 9) return false;
-    
+
     for (let i = 0; i < 9; i++) {
         if (!board[i] || board[i].length !== 9) return false;
-        
+
         for (let j = 0; j < 9; j++) {
             const num = board[i][j];
             if (num !== 0) {
@@ -168,7 +170,7 @@ function validateBoard(board) {
             }
         }
     }
-    
+
     return true;
 }
 
@@ -182,6 +184,6 @@ if (typeof module !== 'undefined' && module.exports) {
         isPuzzleComplete,
         generateValidBoard,
         createPuzzle,
-        validateBoard
+        validateBoard,
     };
 }

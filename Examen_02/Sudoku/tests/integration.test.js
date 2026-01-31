@@ -14,14 +14,14 @@ describe('Sudoku Game Integration Tests', () => {
         // Generate a solution
         const solution = generateValidBoard();
         expect(validateBoard(solution)).toBe(true);
-        
+
         // Create puzzle from solution
         const puzzle = createPuzzle(solution, 40);
-        
+
         // Verify puzzle is solvable
         const puzzleCopy = puzzle.map(row => [...row]);
         const solved = solveSudoku(puzzleCopy);
-        
+
         expect(solved).toBe(true);
         expect(validateBoard(puzzleCopy)).toBe(true);
     });
@@ -36,7 +36,7 @@ describe('Sudoku Game Integration Tests', () => {
         Object.entries(difficulties).forEach(([_level, cellsToRemove]) => {
             const solution = generateValidBoard();
             const puzzle = createPuzzle(solution, cellsToRemove);
-            
+
             // Count empty cells
             let emptyCells = 0;
             for (let i = 0; i < 9; i++) {
@@ -44,7 +44,7 @@ describe('Sudoku Game Integration Tests', () => {
                     if (puzzle[i][j] === 0) emptyCells++;
                 }
             }
-            
+
             expect(emptyCells).toBe(cellsToRemove);
         });
     });
@@ -53,10 +53,10 @@ describe('Sudoku Game Integration Tests', () => {
         // 1. Generate solution
         const solution = generateValidBoard();
         expect(validateBoard(solution)).toBe(true);
-        
+
         // 2. Create puzzle
         const puzzle = createPuzzle(solution, 40);
-        
+
         // 3. Simulate solving by copying solution
         const playerBoard = puzzle.map(row => [...row]);
         for (let i = 0; i < 9; i++) {
@@ -66,7 +66,7 @@ describe('Sudoku Game Integration Tests', () => {
                 }
             }
         }
-        
+
         // 4. Verify completion
         expect(validateBoard(playerBoard)).toBe(true);
         expect(JSON.stringify(playerBoard)).toBe(JSON.stringify(solution));

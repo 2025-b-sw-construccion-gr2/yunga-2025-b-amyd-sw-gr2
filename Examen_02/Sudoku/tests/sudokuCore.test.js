@@ -28,7 +28,7 @@ describe('Sudoku Core Functions', () => {
                 [0, 0, 0, 4, 1, 9, 0, 0, 5],
                 [0, 0, 0, 0, 8, 0, 0, 7, 9],
             ];
-            
+
             const result = findEmpty(board);
             expect(result).toEqual([0, 2]);
         });
@@ -45,7 +45,7 @@ describe('Sudoku Core Functions', () => {
                 [2, 8, 7, 4, 1, 9, 6, 3, 5],
                 [3, 4, 5, 2, 8, 6, 1, 7, 9],
             ];
-            
+
             const result = findEmpty(board);
             expect(result).toBeNull();
         });
@@ -53,30 +53,40 @@ describe('Sudoku Core Functions', () => {
 
     describe('isValid', () => {
         test('should return true for valid placement', () => {
-            const board = Array(9).fill(null).map(() => Array(9).fill(0));
+            const board = Array(9)
+                .fill(null)
+                .map(() => Array(9).fill(0));
             expect(isValid(board, 5, 0, 0)).toBe(true);
         });
 
         test('should return false when number exists in row', () => {
-            const board = Array(9).fill(null).map(() => Array(9).fill(0));
+            const board = Array(9)
+                .fill(null)
+                .map(() => Array(9).fill(0));
             board[0][5] = 7;
             expect(isValid(board, 7, 0, 0)).toBe(false);
         });
 
         test('should return false when number exists in column', () => {
-            const board = Array(9).fill(null).map(() => Array(9).fill(0));
+            const board = Array(9)
+                .fill(null)
+                .map(() => Array(9).fill(0));
             board[5][0] = 7;
             expect(isValid(board, 7, 0, 0)).toBe(false);
         });
 
         test('should return false when number exists in 3x3 box', () => {
-            const board = Array(9).fill(null).map(() => Array(9).fill(0));
+            const board = Array(9)
+                .fill(null)
+                .map(() => Array(9).fill(0));
             board[1][1] = 7;
             expect(isValid(board, 7, 0, 0)).toBe(false);
         });
 
         test('should handle edge cases with valid numbers', () => {
-            const board = Array(9).fill(null).map(() => Array(9).fill(0));
+            const board = Array(9)
+                .fill(null)
+                .map(() => Array(9).fill(0));
             expect(isValid(board, 1, 8, 8)).toBe(true);
             expect(isValid(board, 9, 0, 8)).toBe(true);
         });
@@ -92,7 +102,7 @@ describe('Sudoku Core Functions', () => {
         test('should contain all original elements', () => {
             const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
             const shuffled = shuffleArray(arr);
-            
+
             expect(shuffled.sort()).toEqual(arr.sort());
         });
 
@@ -154,7 +164,7 @@ describe('Sudoku Core Functions', () => {
                 [2, 8, 7, 4, 1, 9, 6, 3, 5],
                 [3, 4, 5, 2, 8, 6, 1, 7, 9],
             ];
-            
+
             const result = isPuzzleComplete(board, board);
             expect(result).toBe(true);
         });
@@ -171,7 +181,7 @@ describe('Sudoku Core Functions', () => {
                 [2, 8, 7, 4, 1, 9, 6, 3, 5],
                 [3, 4, 5, 2, 8, 6, 1, 7, 0], // Last cell is 0
             ];
-            
+
             const solution = [
                 [5, 3, 4, 6, 7, 8, 9, 1, 2],
                 [6, 7, 2, 1, 9, 5, 3, 4, 8],
@@ -183,7 +193,7 @@ describe('Sudoku Core Functions', () => {
                 [2, 8, 7, 4, 1, 9, 6, 3, 5],
                 [3, 4, 5, 2, 8, 6, 1, 7, 9],
             ];
-            
+
             const result = isPuzzleComplete(board, solution);
             expect(result).toBe(false);
         });
@@ -192,7 +202,7 @@ describe('Sudoku Core Functions', () => {
     describe('generateValidBoard', () => {
         test('should generate a valid filled 9x9 board', () => {
             const board = generateValidBoard();
-            
+
             expect(board.length).toBe(9);
             expect(board[0].length).toBe(9);
             expect(findEmpty(board)).toBeNull();
@@ -201,9 +211,10 @@ describe('Sudoku Core Functions', () => {
         test('should generate different boards on multiple calls', () => {
             const board1 = generateValidBoard();
             const board2 = generateValidBoard();
-            
+
             // Boards should not be identical (very unlikely with randomization)
-            const areIdentical = JSON.stringify(board1) === JSON.stringify(board2);
+            const areIdentical =
+                JSON.stringify(board1) === JSON.stringify(board2);
             expect(areIdentical).toBe(false);
         });
     });
@@ -213,14 +224,14 @@ describe('Sudoku Core Functions', () => {
             const solution = generateValidBoard();
             const cellsToRemove = 40;
             const puzzle = createPuzzle(solution, cellsToRemove);
-            
+
             let emptyCells = 0;
             for (let i = 0; i < 9; i++) {
                 for (let j = 0; j < 9; j++) {
                     if (puzzle[i][j] === 0) emptyCells++;
                 }
             }
-            
+
             expect(emptyCells).toBe(cellsToRemove);
         });
 
@@ -228,7 +239,7 @@ describe('Sudoku Core Functions', () => {
             const solution = generateValidBoard();
             const original = solution.map(row => [...row]);
             createPuzzle(solution, 30);
-            
+
             expect(solution).toEqual(original);
         });
     });
@@ -246,7 +257,7 @@ describe('Sudoku Core Functions', () => {
                 [2, 8, 7, 4, 1, 9, 6, 3, 5],
                 [3, 4, 5, 2, 8, 6, 1, 7, 9],
             ];
-            
+
             expect(validateBoard(board)).toBe(true);
         });
 
@@ -262,7 +273,7 @@ describe('Sudoku Core Functions', () => {
                 [2, 8, 7, 4, 1, 9, 6, 3, 5],
                 [3, 4, 5, 2, 8, 6, 1, 7, 9],
             ];
-            
+
             expect(validateBoard(board)).toBe(false);
         });
 
