@@ -15,7 +15,7 @@ function solveSudoku(board) {
     const [row, col] = empty;
     const numbers = shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9]);
     
-    for (let num of numbers) {
+    for (const num of numbers) {
         if (isValid(board, num, row, col)) {
             board[row][col] = num;
             
