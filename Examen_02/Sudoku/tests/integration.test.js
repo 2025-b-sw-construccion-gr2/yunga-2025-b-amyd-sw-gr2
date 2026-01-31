@@ -2,7 +2,6 @@
  * Integration Tests
  * Tests for the overall game workflow
  */
-
 const {
     generateValidBoard,
     createPuzzle,
@@ -34,7 +33,7 @@ describe('Sudoku Game Integration Tests', () => {
             hard: 55,
         };
 
-        Object.entries(difficulties).forEach(([level, cellsToRemove]) => {
+        Object.entries(difficulties).forEach(([_level, cellsToRemove]) => {
             const solution = generateValidBoard();
             const puzzle = createPuzzle(solution, cellsToRemove);
             
