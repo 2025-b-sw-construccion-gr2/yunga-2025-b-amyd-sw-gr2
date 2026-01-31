@@ -20,14 +20,14 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
-          cache-dependency-path: 'Examen_02/Sudocu/package-lock.json'
+          cache-dependency-path: 'Examen_02/Sudoku/package-lock.json'
       
       - name: Install dependencies
-        working-directory: Examen_02/Sudocu
+        working-directory: Examen_02/Sudoku
         run: npm ci
       
       - name: Run ESLint
-        working-directory: Examen_02/Sudocu
+        working-directory: Examen_02/Sudoku
         run: npm run lint
         continue-on-error: false
 
@@ -44,14 +44,14 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
-          cache-dependency-path: 'Examen_02/Sudocu/package-lock.json'
+          cache-dependency-path: 'Examen_02/Sudoku/package-lock.json'
       
       - name: Install dependencies
-        working-directory: Examen_02/Sudocu
+        working-directory: Examen_02/Sudoku
         run: npm ci
       
       - name: Check code formatting
-        working-directory: Examen_02/Sudocu
+        working-directory: Examen_02/Sudoku
         run: npm run format
         continue-on-error: false
 
@@ -68,20 +68,20 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
-          cache-dependency-path: 'Examen_02/Sudocu/package-lock.json'
+          cache-dependency-path: 'Examen_02/Sudoku/package-lock.json'
       
       - name: Install dependencies
-        working-directory: Examen_02/Sudocu
+        working-directory: Examen_02/Sudoku
         run: npm ci
       
       - name: Run tests with coverage
-        working-directory: Examen_02/Sudocu
+        working-directory: Examen_02/Sudoku
         run: npm test
       
       - name: Upload coverage reports
         uses: codecov/codecov-action@v3
         with:
-          files: ./Examen_02/Sudocu/coverage/lcov.info
+          files: ./Examen_02/Sudoku/coverage/lcov.info
           flags: unittests
           name: codecov-umbrella
           fail_ci_if_error: false
@@ -90,7 +90,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: coverage-report
-          path: Examen_02/Sudocu/coverage/
+          path: Examen_02/Sudoku/coverage/
           retention-days: 30
 
   build:
@@ -107,21 +107,21 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
-          cache-dependency-path: 'Examen_02/Sudocu/package-lock.json'
+          cache-dependency-path: 'Examen_02/Sudoku/package-lock.json'
       
       - name: Install dependencies
-        working-directory: Examen_02/Sudocu
+        working-directory: Examen_02/Sudoku
         run: npm ci
       
       - name: Build project
-        working-directory: Examen_02/Sudocu
+        working-directory: Examen_02/Sudoku
         run: npm run build
       
       - name: Archive build artifacts
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
-          path: Examen_02/Sudocu/dist/
+          path: Examen_02/Sudoku/dist/
           retention-days: 30
       
       - name: Display build summary
