@@ -45,6 +45,8 @@ El frontend desarrollado con JSP se comunica con el backend en Java mediante pet
 
 ## 4. Estrategia de Pipelines (CI/CD)
 
+<img width="629" height="254" alt="{7F53F01F-E9A7-4F68-95CE-0619D81AE6C9}" src="https://github.com/user-attachments/assets/6d035fde-baa9-4b37-9389-6f91c738a6d5" />
+
 ### Pipeline de Integración Continua
 
 El proyecto implementa un pipeline de Integración Continua utilizando **Azure Pipelines**, el cual se ejecuta automáticamente ante cada cambio en el repositorio de código.
