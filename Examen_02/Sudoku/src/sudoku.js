@@ -3,11 +3,10 @@ let board = [];
 let solution = [];
 let selectedCell = null;
 let mistakes = 0;
-let maxMistakes = 3;
+const maxMistakes = 3;
 let timer = 0;
 let timerInterval = null;
 let currentDifficulty = 'easy';
-let hintsUsed = 0;
 
 // DOM elements
 const sudokuBoard = document.getElementById('sudokuBoard');
@@ -27,7 +26,6 @@ const numberBtns = document.querySelectorAll('.number-btn');
 function initGame() {
     mistakes = 0;
     timer = 0;
-    hintsUsed = 0;
     updateMistakes();
     stopTimer();
     generateSudoku();
@@ -80,7 +78,7 @@ function solveSudoku(board) {
     const [row, col] = empty;
     const numbers = shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9]);
     
-    for (let num of numbers) {
+    for (const num of numbers) {
         if (isValid(board, num, row, col)) {
             board[row][col] = num;
             
@@ -198,7 +196,7 @@ function selectCell(row, col) {
     const value = board[row][col];
     if (value !== 0) {
         document.querySelectorAll('.cell').forEach(c => {
-            if (c.textContent == value && c !== cell) {
+            if (c.textContent === value && c !== cell) {
                 c.classList.add('cell-highlight');
             }
         });
@@ -243,7 +241,7 @@ function placeNumber(num) {
     // Highlight same numbers
     document.querySelectorAll('.cell').forEach(c => {
         c.classList.remove('cell-highlight');
-        if (c.textContent == num && !c.classList.contains('cell-selected')) {
+        if (c.textContent === num && !c.classList.contains('cell-selected')) {
             c.classList.add('cell-highlight');
         }
     });
@@ -287,7 +285,6 @@ function giveHint() {
     cell.textContent = correctNumber;
     cell.classList.remove('cell-error');
     cell.classList.add('cell-correct', 'cell-fixed');
-    hintsUsed++;
     
     if (isPuzzleComplete()) {
         setTimeout(() => showWinModal(), 300);
@@ -407,10 +404,10 @@ document.addEventListener('keydown', (e) => {
             let { row, col } = selectedCell;
             
             switch(e.key) {
-                case 'ArrowUp': row = Math.max(0, row - 1); break;
-                case 'ArrowDown': row = Math.min(8, row + 1); break;
-                case 'ArrowLeft': col = Math.max(0, col - 1); break;
-                case 'ArrowRight': col = Math.min(8, col + 1); break;
+            case 'ArrowUp': row = Math.max(0, row - 1); break;
+            case 'ArrowDown': row = Math.min(8, row + 1); break;
+            case 'ArrowLeft': col = Math.max(0, col - 1); break;
+            case 'ArrowRight': col = Math.min(8, col + 1); break;
             }
             
             selectCell(row, col);
