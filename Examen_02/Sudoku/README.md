@@ -1,4 +1,6 @@
-# 🎯 Sudoku Game - Proyecto con CI/CD
+# 🎯 Sudoku Game - Proyecto con CI
+
+<img width="1857" height="910" alt="{35C89E68-38BA-46CD-9467-BB8989E83685}" src="https://github.com/user-attachments/assets/dc913e4f-aeee-4703-bb44-f8b4312e4b2a" />
 
 ## 📋 Información del Proyecto
 
@@ -149,35 +151,7 @@ El pipeline se ejecuta automáticamente en cada `push` o `pull request` hacia la
 
 ### Diagrama de Flujo del Pipeline
 
-```
-┌─────────────┐
-│ Push/PR     │
-└──────┬──────┘
-       │
-       ├──────┐
-       │      │
-       ▼      ▼
-   ┌────┐  ┌────────┐
-   │Lint│  │Format  │  ◄── Ejecutan en paralelo
-   └──┬─┘  └───┬────┘
-       │       │
-       └───┬───┘
-           │
-           ▼
-        ┌──────┐
-        │Tests │
-        └───┬──┘
-            │
-            ▼
-        ┌───────┐
-        │Build  │
-        └───┬───┘
-            │
-            ▼
-     ┌─────────────┐
-     │Status Check │
-     └─────────────┘
-```
+<img width="1499" height="457" alt="{0EA13545-F84F-4ABB-8C71-22A1E02D998C}" src="https://github.com/user-attachments/assets/bfa0e212-2dac-46e5-b022-e2e079920c5a" />
 
 ### Orden de Ejecución
 
@@ -192,40 +166,13 @@ El pipeline se ejecuta automáticamente en cada `push` o `pull request` hacia la
 
 ### ✅ Ejecución Exitosa del Pipeline
 
-```
-✓ Lint Code          (15s)
-✓ Format Check       (12s)  
-✓ Run Tests          (23s) - Coverage: 95%
-✓ Build Project      (8s)
-✓ All Checks Passed  (2s)
+<img width="1497" height="319" alt="{E6247162-95E2-4F67-910B-999CA4C42311}" src="https://github.com/user-attachments/assets/07bf210f-b2e3-495e-8fe0-d13dc74a0873" />
 
-Total time: 60s
-```
 
 ### 🧪 Resultados de Tests
 
-```bash
-$ npm test
+<img width="1467" height="676" alt="{BAB09B4E-24E0-4CCB-BEF9-0BD5611B91FD}" src="https://github.com/user-attachments/assets/60f55e0e-5efe-4d17-b480-53417a8b9efa" />
 
- PASS  tests/sudokuCore.test.js
-  Sudoku Core Functions
-    findEmpty
-      ✓ should find first empty cell (3 ms)
-      ✓ should return null when board is full (1 ms)
-    isValid
-      ✓ should return true for valid placement (1 ms)
-      ✓ should return false when number exists in row (1 ms)
-      ✓ should return false when number exists in column
-      ✓ should return false when number exists in 3x3 box
-    solveSudoku
-      ✓ should solve a valid Sudoku puzzle (45 ms)
-      ✓ should return true for already solved puzzle (2 ms)
-    ...
-
-Test Suites: 2 passed, 2 total
-Tests:       18 passed, 18 total
-Coverage:    95.2% Statements | 92.8% Branches | 100% Functions | 94.1% Lines
-```
 
 ### 🔍 Resultados de Linting
 
@@ -277,71 +224,7 @@ git push origin feature/nombre-caracteristica
 
 ### Ejemplo de Pull Request
 
-```
-Título: feat: Add hint system to Sudoku game
-
-Descripción:
-- Implementado sistema de pistas
-- Añadidas pruebas unitarias para la nueva funcionalidad
-- Actualizada documentación
-
-Checks:
-✅ Lint Code
-✅ Format Check
-✅ Run Tests (Coverage: 96%)
-✅ Build Project
-
-Reviewers: @reviewer1 ✓ Approved
-```
-
----
-
-## ✅ Checklist de Criterios de Evaluación
-
-### Proyecto y Repositorio
-- ✅ Proyecto subido al repositorio de la organización
-- ✅ Estructura de carpetas clara y organizada
-- ✅ Código fuente en `/src`
-- ✅ Pruebas en `/tests`
-- ✅ Documentación en `/docs` y README.md
-
-### Pipeline de CI/CD
-- ✅ Archivo `.github/workflows/ci.yml` configurado
-- ✅ Pipeline ejecutándose automáticamente
-- ✅ Sin errores en la ejecución del pipeline
-- ✅ Jobs configurados correctamente (lint, format, test, build)
-
-### Linting y Formato
-- ✅ ESLint configurado (.eslintrc.json)
-- ✅ Prettier configurado (.prettierrc)
-- ✅ Linter ejecutándose y pasando
-- ✅ Verificación de formato funcionando
-
-### Pruebas Unitarias
-- ✅ Jest configurado
-- ✅ Pruebas unitarias implementadas
-- ✅ Cobertura de código > 80%
-- ✅ Reportes de cobertura generados
-- ✅ Pruebas pasando exitosamente
-
-### Build
-- ✅ Script de build implementado
-- ✅ Build generándose correctamente
-- ✅ Artefactos de build disponibles
-- ✅ Proceso de build sin errores
-
-### Control de Versiones
-- ✅ Uso de branches (feature/*, develop, main)
-- ✅ Pull Requests documentados
-- ✅ Proceso de revisión implementado
-- ✅ Commits descriptivos
-
-### Documentación
-- ✅ README.md completo y detallado
-- ✅ Instrucciones de instalación claras
-- ✅ Explicación del pipeline
-- ✅ Capturas/ejemplos de ejecución
-- ✅ Estructura del proyecto documentada
+<img width="1394" height="799" alt="{D97CB574-6142-4C6F-85AC-AB06AB77CCBE}" src="https://github.com/user-attachments/assets/aba29705-322f-4d8e-b6af-8bb6cd1ba6bc" />
 
 ---
 
@@ -402,16 +285,3 @@ MIT License - ver archivo LICENSE para más detalles
 Para preguntas sobre el proyecto, abre un issue en el repositorio.
 
 ---
-
-## 🎓 Notas del Examen
-
-Este proyecto cumple con todos los requisitos del examen de Construcción y Evolución de Software:
-
-1. ✅ **Repositorio configurado** en la organización del curso
-2. ✅ **Estructura clara** con carpetas src, tests, docs
-3. ✅ **Pipeline completo** con lint, format, test y build
-4. ✅ **Pruebas unitarias** con alta cobertura
-5. ✅ **Pull Requests** con proceso de revisión
-6. ✅ **Documentación completa** y profesional
-
-**Estado del proyecto:** ✅ LISTO PARA EVALUACIÓN
