@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku - Juego Interactivo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Sudoku</h1>
+            <p class="subtitle">Completa la cuadrícula con números del 1 al 9</p>
+        </header>
+
+        <div class="game-controls">
+            <div class="difficulty-selector">
+                <label>Dificultad:</label>
+                <button class="btn-difficulty active" data-difficulty="easy">Fácil</button>
+                <button class="btn-difficulty" data-difficulty="medium">Medio</button>
+                <button class="btn-difficulty" data-difficulty="hard">Difícil</button>
+            </div>
+            <button class="btn-primary" id="newGameBtn">Nuevo Juego</button>
+        </div>
+
+        <div class="game-info">
+            <div class="info-item">
+                <span class="info-label">Tiempo:</span>
+                <span class="info-value" id="timer">00:00</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Errores:</span>
+                <span class="info-value" id="mistakes">0 / 3</span>
+            </div>
+        </div>
+
+        <div id="sudokuBoard" class="sudoku-board"></div>
+
+        <div class="number-pad">
+            <button class="number-btn" data-number="1">1</button>
+            <button class="number-btn" data-number="2">2</button>
+            <button class="number-btn" data-number="3">3</button>
+            <button class="number-btn" data-number="4">4</button>
+            <button class="number-btn" data-number="5">5</button>
+            <button class="number-btn" data-number="6">6</button>
+            <button class="number-btn" data-number="7">7</button>
+            <button class="number-btn" data-number="8">8</button>
+            <button class="number-btn" data-number="9">9</button>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn-action" id="eraseBtn">🗑️ Borrar</button>
+            <button class="btn-action" id="hintBtn">💡 Pista</button>
+            <button class="btn-action" id="checkBtn">✓ Verificar</button>
+        </div>
+    </div>
+
+    <div id="winModal" class="modal">
+        <div class="modal-content">
+            <h2>🎉 ¡Felicitaciones!</h2>
+            <p>Has completado el Sudoku correctamente</p>
+            <p class="modal-time">Tiempo: <span id="finalTime"></span></p>
+            <button class="btn-primary" id="playAgainBtn">Jugar de Nuevo</button>
+        </div>
+    </div>
+
+    <script src="sudoku.js"></script>
+</body>
+</html>
